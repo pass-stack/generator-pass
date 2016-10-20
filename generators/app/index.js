@@ -3,12 +3,13 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var fs = require('fs');
 var path = require('path');
-var questions = require('./questions');
+var questionsCollection = require('./questions');
+var util = require('./util');
 var _ = require('lodash');
 var asciiArt = fs.readFileSync(path.join(__dirname, 'asciiArt.txt'),'utf8');
 
 module.exports = yeoman.Base.extend({
-	constructor: function(){
+  constructor: function(){
     yeoman.Base.apply(this, arguments);
     this.props = {};
     this.argument('appName', { type: String, required: false, desc: 'Project Name', defaults: null});
@@ -19,7 +20,7 @@ module.exports = yeoman.Base.extend({
     var done = this.async();
     var that = this;
     function askInitQuestions(){
-      var questions = _.map(questions.initQuestions, function(question){
+      var questions = _.map(questionsCollection.initQuestions, function(question){
         var defaultValue = question.default;
         if(_.isString(defaultValue) && defaultValue.indexOf('appName') != -1){
           defaultValue = question.default.replace('appName', that.props.appName);
@@ -34,7 +35,7 @@ module.exports = yeoman.Base.extend({
     if(this.props.appName){
       askInitQuestions();
     }else{
-      this.prompt(questions.appNameQuestion).then(function(answers){
+      this.prompt(questionsCollection.appNameQuestion).then(function(answers){
         that.props.appName = answers.appName;
         askInitQuestions();
       });
@@ -42,12 +43,30 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
+    var templateFiles = ['*/build.sbt', '*/project/Config.scala', '*/conf/application.conf'];
+    var globPattern = "+(" + templateFiles.join('|') + ")";
+    var db = this.props.DatabaseType;
+    var dbName = this.props.DatabaseName;
+    this.fs.copy(this.sourceRoot(), this.destinationRoot(), { ignore:globPattern });
+    //copy build.sbt
+    var appName = this.props.appName;
+    this.fs.copyTpl(this.templatePath('build.sbt'), this.destinationPath('build.sbt'), { appName: appName });
+    //copy Config.scala
+    var organization = this.props.OrganizationName;
+    var SBTDBDriverDependency = util.getSBTDBDriverDependency(db);
+    this.fs.copyTpl(this.templatePath('project/Config.scala'), this.destinationPath('project/Config.scala'), { organization: organization, SBTDBDriverDependency: SBTDBDriverDependency });
+    //copy app.conf
+    var secret = util.makeSecretKey();
+    var slickDBDriver = util.getSlickDBDriver(db);
+    var DBDriver = util.getDBDriver(db);
+    var DBConnectionUrl = util.generateDBConnectionString(db, dbName);
+    this.fs.copyTpl(this.templatePath('conf/application.conf'), this.destinationPath('conf/application.conf'), { secret: secret, slickDBDriver: slickDBDriver, DBDriver: DBDriver, DBConnectionUrl: DBConnectionUrl });
   },
 
   install: function () {
   },
 
   end: function(){
-  	this.log("it was good seeing you, have a nice day!");
+    this.log("it was good seeing you, have a nice day!");
   }
 });

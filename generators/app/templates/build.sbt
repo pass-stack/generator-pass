@@ -1,4 +1,4 @@
-name := """pass"""
+name := """<%= appName %>"""
 
 Config.settings
 
