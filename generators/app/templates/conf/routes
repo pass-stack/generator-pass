@@ -4,4 +4,3 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 
 ##Modules
-->  /users users.Routes
