@@ -47,19 +47,11 @@ module.exports = function(){
     return connectionStrings[dbChoices.indexOf(db)] + dbName;
   };
 
-  var makeSecretKey = function(){
-    var length = 64;
-    return _.map(new Array(length),function(c){
-      return String.fromCharCode(_.random(48, 122));
-    }).join('');
-  };
-
   return {
     dbChoices: dbChoices,
     generateDBConnectionString: generateDBConnectionString,
     getSBTDBDriverDependency: getSBTDBDriverDependency,
     getSlickDBDriver: getSlickDBDriver,
-    getDBDriver: getDBDriver,
-    makeSecretKey: makeSecretKey
+    getDBDriver: getDBDriver
   };
 }();

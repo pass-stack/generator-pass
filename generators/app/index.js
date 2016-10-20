@@ -56,11 +56,10 @@ module.exports = yeoman.Base.extend({
     var SBTDBDriverDependency = util.getSBTDBDriverDependency(db);
     this.fs.copyTpl(this.templatePath('project/Config.scala'), this.destinationPath('project/Config.scala'), { organization: organization, SBTDBDriverDependency: SBTDBDriverDependency });
     //copy app.conf
-    var secret = util.makeSecretKey();
     var slickDBDriver = util.getSlickDBDriver(db);
     var DBDriver = util.getDBDriver(db);
     var DBConnectionUrl = util.generateDBConnectionString(db, dbName);
-    this.fs.copyTpl(this.templatePath('conf/application.conf'), this.destinationPath('conf/application.conf'), { secret: secret, slickDBDriver: slickDBDriver, DBDriver: DBDriver, DBConnectionUrl: DBConnectionUrl });
+    this.fs.copyTpl(this.templatePath('conf/application.conf'), this.destinationPath('conf/application.conf'), { slickDBDriver: slickDBDriver, DBDriver: DBDriver, DBConnectionUrl: DBConnectionUrl });
   },
 
   install: function () {
