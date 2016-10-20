@@ -1,6 +1,11 @@
-GET     /                           controllers.HomeController.index
+GET     /                       controllers.Application.index(path = "/")
+GET     /app/*asset             controllers.Assets.versioned(path = "/public", asset)
 
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+##PASS/Modules/Start
+##PASS/Modules/End
 
 
-##Modules
+GET     /api                    controllers.Application.api(path = "/")
+GET     /api/*path              controllers.Application.api(path)
+GET     /*path                  controllers.Application.index(path)

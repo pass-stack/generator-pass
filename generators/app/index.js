@@ -43,7 +43,7 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    var templateFiles = ['*/build.sbt', '*/project/Config.scala', '*/conf/application.conf'];
+    var templateFiles = ['*/app/views/index.scala.html', '*/build.sbt', '*/project/Config.scala', '*/conf/application.conf'];
     var globPattern = "+(" + templateFiles.join('|') + ")";
     var db = this.props.DatabaseType;
     var dbName = this.props.DatabaseName;
@@ -51,6 +51,8 @@ module.exports = yeoman.Base.extend({
     //copy build.sbt
     var appName = this.props.appName;
     this.fs.copyTpl(this.templatePath('build.sbt'), this.destinationPath('build.sbt'), { appName: appName });
+    //copy index.html
+    this.fs.copyTpl(this.templatePath('app/views/index.scala.html'), this.destinationPath('app/views/index.scala.html'), { appName: appName });
     //copy Config.scala
     var organization = this.props.OrganizationName;
     var SBTDBDriverDependency = util.getSBTDBDriverDependency(db);
