@@ -6,7 +6,7 @@ var path = require('path');
 var questionsCollection = require('./questions');
 var util = require('./util');
 var _ = require('lodash');
-var asciiArt = fs.readFileSync(path.join(__dirname, 'asciiArt.txt'),'utf8');
+var asciiArt = fs.readFileSync(path.join(__dirname, 'passLogo.txt'),'utf8');
 
 module.exports = yeoman.Base.extend({
   constructor: function(){
