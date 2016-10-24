@@ -15,3 +15,5 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.6")
 
 addSbtPlugin("org.rbayer" % "grunt-sbt" % "1.0")
+
+addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.0")
