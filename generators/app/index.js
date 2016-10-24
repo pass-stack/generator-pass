@@ -48,6 +48,7 @@ module.exports = yeoman.Base.extend({
     var db = this.props.DatabaseType;
     var dbName = this.props.DatabaseName;
     this.fs.copy(this.sourceRoot(), this.destinationRoot(), { ignore:globPattern });
+    this.fs.copy(this.templatePath('.*'), this.destinationRoot());
     //copy build.sbt
     var appName = this.props.appName;
     this.fs.copyTpl(this.templatePath('build.sbt'), this.destinationPath('build.sbt'), { appName: appName });
