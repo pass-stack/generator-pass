@@ -1,5 +1,6 @@
 GET     /                       controllers.Application.index(path = "/")
-GET     /app/*asset             controllers.Assets.versioned(path = "/public", asset)
+GET     /app/*asset             controllers.Assets.versioned(path = "/public/app", asset)
+GET     /lib/*asset             controllers.Assets.versioned(path = "/public/lib", asset)
 
 
 ##PASS/Modules/Start
