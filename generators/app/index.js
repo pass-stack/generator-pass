@@ -73,6 +73,6 @@ module.exports = yeoman.Base.extend({
   },
 
   end: function(){
-    this.log("it was good seeing you, have a nice day!");
+    this.log(chalk.yellow("it was good seeing you, have a nice day!"));
   }
 });
