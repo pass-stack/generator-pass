@@ -12,3 +12,5 @@ lazy val main = (project in file(".")).enablePlugins(PlayScala)
 //PASS/ModuleDependecies/End
 
 libraryDependencies ++= Config.dependencies
+
+PlayKeys.playRunHooks += PassBuilder(baseDirectory.value)
