@@ -51,6 +51,9 @@ module.exports = yeoman.Base.extend({
     //copy build.sbt
     var appName = this.props.appName;
     this.fs.copyTpl(this.templatePath('build.sbt'), this.destinationPath('build.sbt'), { appName: appName });
+    //copy package.json and bower.json
+    this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), { appName: appName });
+    this.fs.copyTpl(this.templatePath('bower.json'), this.destinationPath('bower.json'), { appName: appName });
     //copy index.html
     this.fs.copyTpl(this.templatePath('app/views/index.scala.html'), this.destinationPath('app/views/index.scala.html'), { appName: appName });
     //copy Config.scala

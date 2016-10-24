@@ -1,0 +1,15 @@
+{
+  "name": "<%= appName %>",
+  "description": "PASS Application",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

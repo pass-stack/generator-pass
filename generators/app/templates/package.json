@@ -1,0 +1,10 @@
+{
+  "name": "<%= appName %>",
+  "description": "PASS Application",
+  "version": "1.0.0",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-wiredep": "^3.0.1"
+  }
+}
