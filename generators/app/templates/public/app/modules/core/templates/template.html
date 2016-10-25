@@ -1,0 +1,39 @@
+<md-sidenav md-component-id="sidenav" md-whiteframe="4">
+  <md-toolbar class="md-theme-indigo">
+    <div class="md-toolbar-tools">
+      <h2>
+        <span> <%= appName %></span>
+      </h2>
+      <md-button class="md-icon-button" ng-click="sidenav.toggle()">
+        <md-icon md-font-set="material-icons" aria-label="Close Sidenav" alt="Close Sidenav"> arrow_back </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-list-item ng-click="navbar.goTo('app.home')">
+        <md-icon md-font-set="material-icons" aria-label="Home" alt="Home"> home </md-icon>
+        <p> Home </p>
+      </md-list-item>
+      <md-list-item ng-click="navbar.goTo(item.state)" ng-repeat=" item in navbar.items">
+        <md-icon md-font-set="material-icons" aria-label="{{ item.name }}" alt="{{ item.name }}"> {{ item.icon }} </md-icon>
+        <p> {{ item.name }} </p>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</md-sidenav>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>
+      <span> <%= appName %></span>
+    </h2>
+    <md-button class="md-icon-button" ng-click="sidenav.toggle()">
+      <md-icon md-font-set="material-icons" aria-label="Open Sidenav" alt="Open Sidenav"> menu </md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-content layout="row">
+  <div flex="20"></div>
+  <md-content flex layout-padding ui-view></md-content>
+  <div flex="20"></div>
+</md-content>

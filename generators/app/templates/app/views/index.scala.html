@@ -2,7 +2,10 @@
 <html ng-app="app">
 <head>
   <meta charset="UTF-8">
+  <meta name="fragment" content="!">
+  <base href="/">
   <title>yo</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- bower:css -->
   <!-- endbower -->
 </head>
@@ -12,6 +15,9 @@
   <!-- endbower -->
   <script src="/app/app.js"></script>
   <!-- PASS/Modules/Start -->
+  <script src="/app/modules/core/core.module.js"></script>
+  <script src="/app/modules/core/services/sidenav.js"></script>
+  <script src="/app/modules/core/controllers/template.js"></script>
   <script src="/app/modules/home/home.module.js"></script>
   <script src="/app/modules/home/controllers/home.js"></script>
   <!-- PASS/Modules/End -->

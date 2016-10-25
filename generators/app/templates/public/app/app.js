@@ -5,6 +5,10 @@
     'ui.router',
     'ngAnimate',
     'ngMaterial',
-    'app.home'
-  ]);
+    'app.core',
+    'app.home'])
+  .config(function($locationProvider, $urlRouterProvider){
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/');
+  });
 })(angular);
