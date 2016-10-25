@@ -43,11 +43,11 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    var templateFiles = ['*/app/views/index.scala.html', '*/build.sbt', '*/project/Config.scala', '*/conf/application.conf'];
-    var globPattern = "+(" + templateFiles.join('|') + ")";
+    //var templateFiles = ['*/app/views/index.scala.html', '*/build.sbt', '*/project/Config.scala', '*/conf/application.conf', 'package.json', 'bower.json'];
+    //var globPattern = "+(" + templateFiles.join('|') + ")";
     var db = this.props.DatabaseType;
     var dbName = this.props.DatabaseName;
-    this.fs.copy(this.sourceRoot(), this.destinationRoot(), { ignore:globPattern });
+    this.fs.copy(this.sourceRoot(), this.destinationRoot());
     this.fs.copy(this.templatePath('.*'), this.destinationRoot());
     //copy build.sbt
     var appName = this.props.appName;
@@ -55,6 +55,8 @@ module.exports = yeoman.Base.extend({
     //copy package.json and bower.json
     this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), { appName: appName });
     this.fs.copyTpl(this.templatePath('bower.json'), this.destinationPath('bower.json'), { appName: appName });
+    //copy public/app/modules/core/templates/template.html
+    this.fs.copyTpl(this.templatePath('public/app/modules/core/templates/template.html'), this.destinationPath('public/app/modules/core/templates/template.html'), { appName: appName });
     //copy index.html
     this.fs.copyTpl(this.templatePath('app/views/index.scala.html'), this.destinationPath('app/views/index.scala.html'), { appName: appName });
     //copy Config.scala
