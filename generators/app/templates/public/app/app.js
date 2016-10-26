@@ -5,6 +5,7 @@
     'ui.router',
     'ngAnimate',
     'ngMaterial',
+    'ngResource',
     'app.core',
     'app.home'])
   .config(function($locationProvider, $urlRouterProvider){
