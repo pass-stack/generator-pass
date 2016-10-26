@@ -21,7 +21,7 @@ module.exports = yeoman.Base.extend({
     var that = this;
     //shows module fields
     function listFields(){
-      that.log(chalk.blue("Module " + chalk.bold(that.props.moduleName)));
+      that.log("\n" + chalk.blue("Module " + chalk.bold(that.props.moduleName)));
       var table = new Table();
       _.forEach(that.props.fields, function(field){
         table.cell('Field name', field.name);
