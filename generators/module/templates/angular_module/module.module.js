@@ -22,7 +22,7 @@
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.update.html',
       controller: '<%= moduleNameCap %>UpdateController',
       resolve: {
-        <%= moduleName %>Resolve: new<%= moduleName %>
+        <%= moduleName %>Resolve: new<%= moduleNameCap %>
       },
       controllerAs: 'vm'
     })
@@ -39,7 +39,7 @@
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.update.html',
       controller: '<%= moduleNameCap %>UpdateController',
       resolve: {
-        <%= moduleName %>Resolve: get<%= moduleName %>
+        <%= moduleName %>Resolve: get<%= moduleNameCap %>
       },
       controllerAs: 'vm'
     });
