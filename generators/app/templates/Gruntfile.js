@@ -20,6 +20,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-wiredep');
 
   grunt.registerTask('wire-play-modules', function(){
+    grunt.log.writeln('Wiring play subProjects');
     var modules = getDirectories(__dirname + '/modules');
     var playModules = _.map(modules, function(module){
       return 'lazy val ' + module + ' = (project in file("modules/' + module + '")).enablePlugins(PlayScala)';
