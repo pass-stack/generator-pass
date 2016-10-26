@@ -70,12 +70,23 @@ module.exports = yeoman.Base.extend({
     ];
 
     var templates_play = [
+      'build.sbt',
+      'conf/modules.routes',
+      'app/controllers/ModuleController.scala'
     ];
 
     _.forEach(templates_ng, function(template){
       that.fs.copyTpl(
         that.templatePath('angular_module/' + template),
         that.destinationPath('public/app/modules/' + moduleName + 's/' + template.replace('module', moduleName)),
+        { moduleName: moduleName, moduleNameCap: moduleNameCap }
+      );
+    });
+
+    _.forEach(templates_play, function(template){
+      that.fs.copyTpl(
+        that.templatePath('play_module/' + template),
+        that.destinationPath('modules/' + moduleName + 's/' + template.replace('module', moduleName).replace('Module', moduleNameCap)),
         { moduleName: moduleName, moduleNameCap: moduleNameCap }
       );
     });
