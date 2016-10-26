@@ -16,7 +16,7 @@
         <md-icon md-font-set="material-icons" aria-label="Home" alt="Home"> home </md-icon>
         <p> Home </p>
       </md-list-item>
-      <md-list-item ng-click="navbar.goTo(item.state)" ng-repeat=" item in navbar.items">
+      <md-list-item ng-click="navbar.goTo(item.state)" ng-repeat="item in sidenav.items">
         <md-icon md-font-set="material-icons" aria-label="{{ item.name }}" alt="{{ item.name }}"> {{ item.icon }} </md-icon>
         <p> {{ item.name }} </p>
       </md-list-item>
