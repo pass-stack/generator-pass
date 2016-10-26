@@ -2,11 +2,11 @@
 'use strict';
 
   angular.module('app.<%= moduleName %>')
-  .controller('<%= moduleName | capitalize %>ViewController', <%= moduleName | capitalize %>ViewController);
+  .controller('<%= moduleNameCap %>ViewController', <%= moduleNameCap %>ViewController);
 
-  <%= moduleName | capitalize %>ViewController.$inject = ['$scope','<%= moduleName %>Resolve'];
+  <%= moduleNameCap %>ViewController.$inject = ['$scope','<%= moduleName %>Resolve'];
 
-  function <%= moduleName | capitalize %>ViewController($scope, <%= moduleName %>Resolve){
+  function <%= moduleNameCap %>ViewController($scope, <%= moduleName %>Resolve){
     var vm = this;
 
   }

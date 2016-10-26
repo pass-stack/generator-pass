@@ -55,6 +55,31 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
+    var that = this;
+    var moduleName = _.toLower(this.props.moduleName);
+    var moduleNameCap = _.capitalize(moduleName);
+    var templates_ng = [
+      'module.module.js',
+      'services/module.service.js',
+      'controllers/module.list.controller.js',
+      'controllers/module.update.controller.js',
+      'controllers/module.view.controller.js',
+      'templates/module.list.html',
+      'templates/module.update.html',
+      'templates/module.view.html',
+    ];
+
+    var templates_play = [
+    ];
+
+    _.forEach(templates_ng, function(template){
+      that.fs.copyTpl(
+        that.templatePath('angular_module/' + template),
+        that.destinationPath('public/app/modules/' + moduleName + 's/' + template.replace('module', moduleName)),
+        { moduleName: moduleName, moduleNameCap: moduleNameCap }
+      );
+    });
+
   },
 
   install: function () {

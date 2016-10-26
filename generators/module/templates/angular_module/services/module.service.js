@@ -2,11 +2,11 @@
 'use strict';
 
   angular.module('app.<%= moduleName %>')
-  .factory('<%= moduleName | capitalize %>sService', <%= moduleName | capitalize %>sService);
+  .factory('<%= moduleNameCap %>sService', <%= moduleNameCap %>sService);
 
-  <%= moduleName | capitalize %>sService.$inject = ['$resource'];
+  <%= moduleNameCap %>sService.$inject = ['$resource'];
 
-  function <%= moduleName | capitalize %>sService($resource){
+  function <%= moduleNameCap %>sService($resource){
     var <%= moduleName %> = $resource('/api/<%= moduleName %>s/:id', {
       id: '@id'
     }, {
