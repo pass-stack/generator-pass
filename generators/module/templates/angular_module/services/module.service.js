@@ -1,7 +1,7 @@
 (function(angular) {
 'use strict';
 
-  angular.module('app.<%= moduleName %>')
+  angular.module('app.<%= moduleName %>s')
   .factory('<%= moduleNameCap %>sService', <%= moduleNameCap %>sService);
 
   <%= moduleNameCap %>sService.$inject = ['$resource'];
