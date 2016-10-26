@@ -1,4 +1,4 @@
-name := "users"
+name := "<%= moduleName %>s"
 
 Config.settings
 
