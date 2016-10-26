@@ -1,1 +1,1 @@
-# pass-generator
+# generator-pass
