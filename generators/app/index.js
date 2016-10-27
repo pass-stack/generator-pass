@@ -43,10 +43,11 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    //var templateFiles = ['*/app/views/index.scala.html', '*/build.sbt', '*/project/Config.scala', '*/conf/application.conf', 'package.json', 'bower.json'];
-    //var globPattern = "+(" + templateFiles.join('|') + ")";
     var db = this.props.DatabaseType;
     var dbName = this.props.DatabaseName;
+    //save configuration
+    this.config.set("databaseType", db);
+    //copy non-template files
     this.fs.copy(this.sourceRoot(), this.destinationRoot());
     this.fs.copy(this.templatePath('.*'), this.destinationRoot());
     //copy build.sbt
