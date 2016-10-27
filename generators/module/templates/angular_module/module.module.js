@@ -7,11 +7,12 @@
     .state({
       name: 'app.<%= moduleName %>',
       url: '/<%= moduleName %>',
+      template: '<ui-view/>',
       abstract: true
     })
     .state({
       name: 'app.<%= moduleName %>.list',
-      url: '/',
+      url: '',
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.list.html',
       controller: '<%= moduleNameCap %>ListController',
       controllerAs: 'vm'
