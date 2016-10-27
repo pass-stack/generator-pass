@@ -5,10 +5,13 @@
     </div>
   </md-toolbar>
   <div class="md-padding">
-    <% fields.forEach(function(field){ %><div layout="row">
-      <div flex="20"><%= field.name %></div>
-      <div flex="80">{{ <%= moduleName %>.<%= field.name %> }}</div>
-    </div><% }); %>
+    <form name="userForm" layout="column">
+      <% fields.forEach(function(field){ %>
+      <md-input-container>
+        <label for="<%= field.name %>"><%= field.name %></label>
+        <input id="<%= field.name %>" name="<%= field.name %>" ng-model="<%= moduleName %>.<%= field.name %>">
+      </md-input-container><% }); %>
+    </form>
   </div>
   <md-card-actions layout="row" layout-align="end center">
     <md-button flex="15" class="md-primary md-raised" ng-click="vm.update($event, <%= moduleName %>)">{{ vm.action }}</md-button>
