@@ -6,8 +6,7 @@
     , 'ngAnimate'
     , 'ngMaterial'
     , 'ngResource'
-    , 'app.core'
-    , 'app.home'
+    , 'data-table'
     //PASS#Modules#Start
     //PASS#Modules#End
     ])
