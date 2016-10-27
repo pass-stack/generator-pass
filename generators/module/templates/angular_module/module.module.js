@@ -1,23 +1,23 @@
 (function(angular) {
 'use strict';
 
-  angular.module('app.<%= moduleName %>s', [])
+  angular.module('app.<%= moduleName %>', [])
   .config(function($stateProvider) {
     $stateProvider
     .state({
-      name: 'app.<%= moduleName %>s',
-      url: '/<%= moduleName %>s',
+      name: 'app.<%= moduleName %>',
+      url: '/<%= moduleName %>',
       abstract: true
     })
     .state({
-      name: 'app.<%= moduleName %>s.list',
+      name: 'app.<%= moduleName %>.list',
       url: '/',
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.list.html',
       controller: '<%= moduleNameCap %>ListController',
       controllerAs: 'vm'
     })
     .state({
-      name: 'app.<%= moduleName %>s.create',
+      name: 'app.<%= moduleName %>.create',
       url: '/create',
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.update.html',
       controller: '<%= moduleNameCap %>UpdateController',
@@ -27,14 +27,14 @@
       controllerAs: 'vm'
     })
     .state({
-      name: 'app.<%= moduleName %>s.view',
+      name: 'app.<%= moduleName %>.view',
       url: '/view/{id}',
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.view.html',
       controller: '<%= moduleNameCap %>ViewController',
       controllerAs: 'vm'
     })
     .state({
-      name: 'app.<%= moduleName %>s.update',
+      name: 'app.<%= moduleName %>.update',
       url: '/update/{id}',
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.update.html',
       controller: '<%= moduleNameCap %>UpdateController',
@@ -45,16 +45,16 @@
     });
   });
 
-  new<%= moduleNameCap %>.$inject = ['<%= moduleNameCap %>sService'];
+  new<%= moduleNameCap %>.$inject = ['<%= moduleNameCap %>Service'];
 
-  function new<%= moduleNameCap %>(<%= moduleNameCap %>sService) {
-    return new <%= moduleNameCap %>sService();
+  function new<%= moduleNameCap %>(<%= moduleNameCap %>Service) {
+    return new <%= moduleNameCap %>Service();
   }
 
-  get<%= moduleNameCap %>.$inject = ['$stateParams', '<%= moduleNameCap %>sService'];
+  get<%= moduleNameCap %>.$inject = ['$stateParams', '<%= moduleNameCap %>Service'];
 
-  function get<%= moduleNameCap %>($stateParams, <%= moduleNameCap %>sService) {
-    return <%= moduleNameCap %>sService.get({
+  function get<%= moduleNameCap %>($stateParams, <%= moduleNameCap %>Service) {
+    return <%= moduleNameCap %>Service.get({
       id: $stateParams.id
     }).$promise;
   }

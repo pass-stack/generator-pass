@@ -1,1 +1,1 @@
-GET /index                  controllers.<%= moduleName %>s.<%= moduleNameCap %>Controller.index()
+GET /index                  controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.index()

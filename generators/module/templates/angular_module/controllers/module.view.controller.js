@@ -1,7 +1,7 @@
 (function(angular) {
 'use strict';
 
-  angular.module('app.<%= moduleName %>s')
+  angular.module('app.<%= moduleName %>')
   .controller('<%= moduleNameCap %>ViewController', <%= moduleNameCap %>ViewController);
 
   <%= moduleNameCap %>ViewController.$inject = ['$scope','<%= moduleName %>Resolve'];

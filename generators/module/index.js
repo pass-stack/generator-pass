@@ -78,7 +78,7 @@ module.exports = yeoman.Base.extend({
     _.forEach(templates_ng, function(template){
       that.fs.copyTpl(
         that.templatePath('angular_module/' + template),
-        that.destinationPath('public/app/modules/' + moduleName + 's/' + template.replace('module', moduleName)),
+        that.destinationPath('public/app/modules/' + moduleName + '/' + template.replace('module', moduleName)),
         { moduleName: moduleName, moduleNameCap: moduleNameCap }
       );
     });
@@ -86,7 +86,7 @@ module.exports = yeoman.Base.extend({
     _.forEach(templates_play, function(template){
       that.fs.copyTpl(
         that.templatePath('play_module/' + template),
-        that.destinationPath('modules/' + moduleName + 's/' + template.replace('module', moduleName).replace('Module', moduleNameCap)),
+        that.destinationPath('modules/' + moduleName + '/' + template.replace('module', moduleName).replace('Module', moduleNameCap)),
         { moduleName: moduleName, moduleNameCap: moduleNameCap }
       );
     });

@@ -1,4 +1,4 @@
-package controllers.<%= moduleName %>s
+package controllers.<%= moduleName %>
 
 import play.api._
 import play.api.mvc._

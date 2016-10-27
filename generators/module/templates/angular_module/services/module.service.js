@@ -1,13 +1,13 @@
 (function(angular) {
 'use strict';
 
-  angular.module('app.<%= moduleName %>s')
-  .factory('<%= moduleNameCap %>sService', <%= moduleNameCap %>sService);
+  angular.module('app.<%= moduleName %>')
+  .factory('<%= moduleNameCap %>Service', <%= moduleNameCap %>Service);
 
-  <%= moduleNameCap %>sService.$inject = ['$resource'];
+  <%= moduleNameCap %>Service.$inject = ['$resource'];
 
-  function <%= moduleNameCap %>sService($resource){
-    var <%= moduleName %> = $resource('/api/<%= moduleName %>s/:id', {
+  function <%= moduleNameCap %>Service($resource){
+    var <%= moduleName %> = $resource('/api/<%= moduleName %>/:id', {
       id: '@id'
     }, {
       update: {

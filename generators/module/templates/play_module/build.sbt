@@ -1,4 +1,4 @@
-name := "<%= moduleName %>s"
+name := "<%= moduleName %>"
 
 Config.settings
 
