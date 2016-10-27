@@ -41,10 +41,16 @@ module.exports = function(grunt) {
       var projectDependencies = _.map(modules, function(module){
         return '.enablePlugins(PlayScala).dependsOn(' + module + ').aggregate(' + module + ')';
       }).join('\n');
-      var data = fs.readFileSync(path.join(__dirname, 'build.sbt'), 'utf-8')
-        .replace(/\/\/PASS#Modules#Start[\s\S]*\/\/PASS#Modules#End/, '//PASS#Modules#Start\n' + playModules + '\n//PASS#Modules#End\n')
-        .replace(/\/\/PASS#ModuleDependecies#Start[\s\S]*\/\/PASS#ModuleDependecies#End/, '//PASS#ModuleDependecies#Start\n' + projectDependencies + '\n//PASS#ModuleDependecies#End\n');
-      fs.writeFileSync(path.join(__dirname, 'build.sbt'), data, 'utf-8');
+      var routesConfiguration = _.map(modules, function(module){
+        return '->      /api/' + module + '                   ' + module + '.Routes';
+      }).join('\n');
+      var buildSbtData = fs.readFileSync(path.join(__dirname, 'build.sbt'), 'utf-8')
+        .replace(/\/\/PASS#Modules#Start[\s\S]*\/\/PASS#Modules#End/, '//PASS#Modules#Start\n' + playModules + '\n//PASS#Modules#End')
+        .replace(/\/\/PASS#ModuleDependecies#Start[\s\S]*\/\/PASS#ModuleDependecies#End/, '//PASS#ModuleDependecies#Start\n' + projectDependencies + '\n//PASS#ModuleDependecies#End');
+      fs.writeFileSync(path.join(__dirname, 'build.sbt'), buildSbtData, 'utf-8');
+      var routesData = fs.readFileSync(path.join(__dirname, 'conf/routes'), 'utf-8')
+        .replace(/##PASS#Modules#Start[\s\S]*##PASS#Modules#End/, '##PASS#Modules#Start\n' + routesConfiguration + '\n##PASS#Modules#End')
+      fs.writeFileSync(path.join(__dirname, 'conf/routes'), routesData, 'utf-8');      
     }catch(e){
       grunt.log.writeln(e);
     }
