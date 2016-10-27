@@ -12,7 +12,11 @@
     vm.action = ($scope.<%= moduleName %>.id)? 'Create' : 'Update';
 
     vm.update = function(event, <%= moduleName %>){
-      <%= moduleName %>.$save();
+      if(vm.action == 'Create'){
+        <%= moduleName %>.$save();
+      }else{
+        <%= moduleName %>.$update();
+      }
     };
 
     vm.delete = function(event, <%= moduleName %>){
