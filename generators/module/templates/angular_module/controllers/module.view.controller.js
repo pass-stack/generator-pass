@@ -4,9 +4,9 @@
   angular.module('app.<%= moduleName %>')
   .controller('<%= moduleNameCap %>ViewController', <%= moduleNameCap %>ViewController);
 
-  <%= moduleNameCap %>ViewController.$inject = ['$scope','<%= moduleName %>Resolve'];
+  <%= moduleNameCap %>ViewController.$inject = ['$scope'];
 
-  function <%= moduleNameCap %>ViewController($scope, <%= moduleName %>Resolve){
+  function <%= moduleNameCap %>ViewController($scope){
     var vm = this;
 
   }
