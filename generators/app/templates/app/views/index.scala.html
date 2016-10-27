@@ -16,18 +16,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- bower:css -->
   <!-- endbower -->
+  <!-- include: "type": "css", "ordering": "top-down", "files": "**/*.css" -->
+  <!-- /include -->
 </head>
 <body>
   <ui-view></ui-view>
   <!-- bower:js -->
   <!-- endbower -->
-  <script src="/app/app.js"></script>
-  <!-- PASS/Modules/Start -->
-  <script src="/app/modules/core/core.module.js"></script>
-  <script src="/app/modules/core/services/sidenav.js"></script>
-  <script src="/app/modules/core/controllers/template.js"></script>
-  <script src="/app/modules/home/home.module.js"></script>
-  <script src="/app/modules/home/controllers/home.js"></script>
-  <!-- PASS/Modules/End -->
+  <!-- include: "type": "js", "ordering": "top-down", "files": "**/*.js" -->
+  <!-- /include -->
 </body>
 </html>

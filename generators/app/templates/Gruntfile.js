@@ -14,10 +14,22 @@ module.exports = function(grunt) {
           ignorePath: '../../public',
         }
       }
+    },
+    includeSource: {
+      options: {
+        basePath: 'public/app',
+        baseUrl: '/app/'
+      },
+      myTarget: {
+        files: {
+          'app/views/index.scala.html': 'app/views/index.scala.html'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-include-source');
 
   grunt.registerTask('wire-play-modules', function(){
     grunt.log.writeln('Wiring play subProjects');
@@ -34,7 +46,7 @@ module.exports = function(grunt) {
     fs.writeFileSync(path.join(__dirname, 'build.sbt'), data, 'utf-8');
   });
 
-  grunt.registerTask('default', ['wire-play-modules', 'wiredep']);
+  grunt.registerTask('default', ['wire-play-modules', 'wiredep', 'includeSource']);
 
   function getDirectories(path) {
     return fs.readdirSync(path).filter(function (file) {
