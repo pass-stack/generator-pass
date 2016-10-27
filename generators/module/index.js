@@ -80,13 +80,13 @@ module.exports = yeoman.Base.extend({
     ];
     var templates_play = [
       'build.sbt',
-      'conf/modules.routes',
+      'conf/module.routes',
       'app/controllers/ModuleController.scala',
       'app/models/Module.scala',
       'app/services/ModuleService.scala'
     ];
 
-    //wiring angular sub modules
+    //copying templated angular files
     _.forEach(templates_ng, function(template){
       that.fs.copyTpl(
         that.templatePath('angular_module/' + template),
@@ -95,7 +95,7 @@ module.exports = yeoman.Base.extend({
       );
     });
 
-    //wiring play sub projects
+    //copying templated play files
     _.forEach(templates_play, function(template){
       that.fs.copyTpl(
         that.templatePath('play_module/' + template),
