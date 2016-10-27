@@ -13,8 +13,10 @@ module.exports = function(){
 
   function getScalaFormType(field){
     var fieldType = field.type;
-    if(fieldType == 'Integer' || fieldType == 'Long'){
+    if(fieldType == 'Integer'){
       fieldType = 'number';
+    }else if(fieldType == 'Long'){
+      fieldType = 'longNumber';
     }else if(fieldType == 'Double'){
       fieldType = 'bigDecimal';
     }else if(fieldType == 'Boolean'){

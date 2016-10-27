@@ -2,14 +2,15 @@ package models.<%= moduleName %>
 
 import play.api.data.Form
 import play.api.data.Forms._
+import slick.driver.MySQLDriver.api._
 
 
-case class <%= moduleNameCap %>( <%- fields.map(function(field){ return field.name + ': ' + field.scalaType;}).join(', '); %>)
+case class <%= moduleNameCap %> ( <%- fields.map(function(field){ return field.name + ': ' + field.scalaType;}).join(', '); %> )
 
-case class <%= moduleNameCap %>FormData( <%- fields.map(function(field){ return field.name + ': ' + field.scalaType;}).join(', '); %>)
+case class <%= moduleNameCap %>FormData ( <%- fields.map(function(field){ return field.name + ': ' + field.scalaType;}).join(', '); %> )
 
-object <%= moduleNameCap %>Form{
-  val form = Form(
+object <%= moduleNameCap %>Form {
+  val form = Form (
     mapping(
       <%- fields.map(function(field){
             return '"' + field.name + '"' + ' -> ' + field.scalaFormType;
@@ -18,7 +19,7 @@ object <%= moduleNameCap %>Form{
   )
 }
 
-class <%= moduleNameCap %>TableDef(tag: Tag) extends Table[<%= moduleNameCap %>](tag, "<%= moduleName %>"){
+class <%= moduleNameCap %>TableDef(tag: Tag) extends Table[<%= moduleNameCap %>](tag, "<%= moduleName %>") {
   <%- fields.map(function(field){
         return 'def ' + field.name + ' = ' + 'column[' + field.scalaType + ']("' + field.name + '")';
     }).join('\n  '); %>
