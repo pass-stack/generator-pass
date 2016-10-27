@@ -12,7 +12,7 @@ module.exports = yeoman.Base.extend({
   constructor: function(){
     yeoman.Base.apply(this, arguments);
     this.props = {
-      fields: []
+      fields: [{ name:'id', type:'Long' }]
     };
     this.argument('moduleName', { type: String, required: false, desc: 'Module Name', defaults: null});
     this.props.moduleName = this.moduleName;
@@ -37,7 +37,9 @@ module.exports = yeoman.Base.extend({
       that.prompt(questionsCollection.confirmAddField).then(function(answers){
         if(answers.addField){//add new field
           that.prompt(questionsCollection.getField).then(function(answers){
-            that.props.fields.push(answers);
+            if(!_.some(that.props.fields, { name: answers.name })){
+              that.props.fields.push(answers);
+            }
             listFields();
           });
         }else{//don't add field go to next phase
