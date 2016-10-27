@@ -1,0 +1,18 @@
+<md-card>
+  <md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+      <span><%= moduleNameCap %></span>
+    </div>
+  </md-toolbar>
+  <div class="md-padding">
+    <% fields.forEach(function(field){ %><div layout="row">
+      <div flex="20"><%= field.name %></div>
+      <div flex="80">{{ <%= moduleName %>.<%= field.name %> }}</div>
+    </div><% }); %>
+  </div>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button flex="15" class="md-primary md-raised" ng-click="vm.update($event, <%= moduleName %>)">{{ vm.action }}</md-button>
+    <div flex="5"></div>
+    <md-button flex="15" class="md-warn md-raised" ng-click="vm.delete($event, <%= moduleName %>)">Delete</md-button>
+  </md-card-actions>
+</md-card>
