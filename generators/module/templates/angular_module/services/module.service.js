@@ -7,7 +7,7 @@
   <%= moduleNameCap %>Service.$inject = ['$resource'];
 
   function <%= moduleNameCap %>Service($resource){
-    var <%= moduleName %> = $resource('/api/<%= moduleName %>/:id', {
+    var <%= moduleNameCap %> = $resource('/api/<%= moduleName %>/:id', {
       id: '@id'
     }, {
       update: {
@@ -15,7 +15,7 @@
       }
     });
 
-    angular.extend(<%= moduleName %>.prototype, {
+    angular.extend(<%= moduleNameCap %>.prototype, {
       createOrUpdate: function () {
         var <%= moduleName %> = this;
         if(<%= moduleName %>.id){
@@ -34,6 +34,6 @@
 
     }
 
-    return <%= moduleName %>;
+    return <%= moduleNameCap %>;
   }
 })(angular);
