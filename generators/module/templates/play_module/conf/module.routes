@@ -1,0 +1,7 @@
+GET    /index                  controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.index()
+
+GET    /                       controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.getAll
+GET    /:id                    controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.get(id: Long)
+POST   /                       controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.create
+PUT    /:id                    controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.update(id: Long)
+DELETE /:id                    controllers.<%= moduleName %>.<%= moduleNameCap %>Controller.delete(id: Long)
