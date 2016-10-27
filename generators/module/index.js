@@ -6,6 +6,7 @@ var path = require('path');
 var _ = require('lodash');
 var Table = require('easy-table');
 var questionsCollection = require('./questions');
+var util = require('./util');
 
 module.exports = yeoman.Base.extend({
   constructor: function(){
@@ -58,6 +59,11 @@ module.exports = yeoman.Base.extend({
     var that = this;
     var moduleName = _.toLower(this.props.moduleName);
     var moduleNameCap = _.capitalize(moduleName);
+    var fields = _.map(this.props.fields, function(field){
+      field.scalaType = util.getScalaType(field);
+      field.scalaFormType = util.getScalaFormType(field);
+      return field;
+    });
     var templates_ng = [
       'module.module.js',
       'services/module.service.js',
@@ -71,7 +77,9 @@ module.exports = yeoman.Base.extend({
     var templates_play = [
       'build.sbt',
       'conf/modules.routes',
-      'app/controllers/ModuleController.scala'
+      'app/controllers/ModuleController.scala',
+      'app/models/Module.scala',
+      'app/services/ModuleService.scala'
     ];
 
     //wiring angular sub modules
@@ -88,7 +96,7 @@ module.exports = yeoman.Base.extend({
       that.fs.copyTpl(
         that.templatePath('play_module/' + template),
         that.destinationPath('modules/' + moduleName + '/' + template.replace('module', moduleName).replace('Module', moduleNameCap)),
-        { moduleName: moduleName, moduleNameCap: moduleNameCap }
+        { moduleName: moduleName, moduleNameCap: moduleNameCap, fields: fields }
       );
     });
 
