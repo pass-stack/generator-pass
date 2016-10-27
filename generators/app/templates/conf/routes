@@ -3,8 +3,8 @@ GET     /app/*asset             controllers.Assets.versioned(path = "/public/app
 GET     /lib/*asset             controllers.Assets.versioned(path = "/public/lib", asset)
 
 
-##PASS/Modules/Start
-##PASS/Modules/End
+##PASS#Modules#Start
+##PASS#Modules#End
 
 
 GET     /api                    controllers.Application.api(path = "/")
