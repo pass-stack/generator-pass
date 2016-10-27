@@ -68,13 +68,13 @@ module.exports = yeoman.Base.extend({
       'templates/module.update.html',
       'templates/module.view.html',
     ];
-
     var templates_play = [
       'build.sbt',
       'conf/modules.routes',
       'app/controllers/ModuleController.scala'
     ];
 
+    //wiring angular sub modules
     _.forEach(templates_ng, function(template){
       that.fs.copyTpl(
         that.templatePath('angular_module/' + template),
@@ -83,6 +83,7 @@ module.exports = yeoman.Base.extend({
       );
     });
 
+    //wiring play sub projects
     _.forEach(templates_play, function(template){
       that.fs.copyTpl(
         that.templatePath('play_module/' + template),
