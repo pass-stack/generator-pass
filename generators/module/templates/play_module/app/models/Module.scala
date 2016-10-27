@@ -1,8 +1,8 @@
-package models.<%= moduleName %>.<%= moduleNameCap %>
+package models.<%= moduleName %>
 
-import play.api.data._
+import play.api.data.Form
 import play.api.data.Forms._
-import scala.concurrent.ExecutionContext.Implicits.global
+
 
 case class <%= moduleNameCap %>( <%- fields.map(function(field){ return field.name + ': ' + field.scalaType;}).join(', '); %>)
 
