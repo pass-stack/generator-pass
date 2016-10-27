@@ -1,0 +1,24 @@
+<md-card>
+  <md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+      <span><%= moduleNameCap %>s</span>
+    </div>
+  </md-toolbar>
+
+  <md-table-container>
+    <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+      <thead md-head md-order="query.order" md-on-reorder="get<%= moduleNameCap %>s">
+        <tr md-row>
+          <% fields.forEach(function(field){ %><th md-column><span><%= field.name %></span></th><% }); %>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row md-select="<%= moduleName %>" md-select-id="name" md-auto-select ng-repeat="<%= moduleName %> in <%= moduleName %>s">
+          <% fields.forEach(function(field){ %><td md-cell>{{<%= moduleName %>.<%= field.name %>}}</td><% }); %>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+
+  <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 25, 50, 100]" md-page="query.page" md-total="{{<%= moduleName %>s.count}}" md-on-paginate="get<%= moduleNameCap %>s" md-page-select></md-table-pagination>
+</md-card>

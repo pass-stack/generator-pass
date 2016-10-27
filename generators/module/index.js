@@ -91,7 +91,7 @@ module.exports = yeoman.Base.extend({
       that.fs.copyTpl(
         that.templatePath('angular_module/' + template),
         that.destinationPath('public/app/modules/' + moduleName + '/' + template.replace('module', moduleName)),
-        { moduleName: moduleName, moduleNameCap: moduleNameCap }
+        { moduleName: moduleName, moduleNameCap: moduleNameCap, fields: fields }
       );
     });
 
