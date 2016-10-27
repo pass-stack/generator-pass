@@ -8,6 +8,6 @@
 
   function <%= moduleNameCap %>UpdateController($scope, <%= moduleName %>Resolve){
     var vm = this;
-
+    $scope.<%= moduleName %> = <%= moduleName %>Resolve;
   }
 })(angular);

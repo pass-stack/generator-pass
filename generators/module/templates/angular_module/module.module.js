@@ -32,6 +32,9 @@
       url: '/view/{id}',
       templateUrl: '/app/modules/<%= moduleName %>/templates/<%= moduleName %>.view.html',
       controller: '<%= moduleNameCap %>ViewController',
+      resolve: {
+        <%= moduleName %>Resolve: get<%= moduleNameCap %>
+      },
       controllerAs: 'vm'
     })
     .state({
