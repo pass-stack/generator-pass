@@ -50,7 +50,22 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['wire-play-modules', 'wiredep', 'includeSource']);
+  grunt.registerTask('wire-ng-modules', function(){
+    grunt.log.writeln('Wiring Angular subModules');
+    try{
+      var modules = getDirectories(__dirname + '/public/app/modules');
+      var ngModules = _.map(modules, function(module){
+        return "    , 'app." + module + "'";
+      }).join('\n');
+      var data = fs.readFileSync(path.join(__dirname, 'public/app/app.js'), 'utf-8')
+        .replace(/\/\/PASS#Modules#Start[\s\S]*\/\/PASS#Modules#End/, '//PASS#Modules#Start\n' + ngModules + '\n    //PASS#Modules#End');
+      fs.writeFileSync(path.join(__dirname, 'public/app/app.js'), data, 'utf-8');
+    }catch(e){
+      grunt.log.writeln(e);
+    }
+  });
+
+  grunt.registerTask('default', ['wire-play-modules', 'wire-ng-modules', 'wiredep', 'includeSource']);
 
   function getDirectories(path) {
     return fs.readdirSync(path).filter(function (file) {
