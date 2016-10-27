@@ -4,9 +4,9 @@
   angular.module('app.<%= moduleName %>')
   .controller('<%= moduleNameCap %>ViewController', <%= moduleNameCap %>ViewController);
 
-  <%= moduleNameCap %>ViewController.$inject = ['$scope', '<%= moduleName %>Resolve', '$mdDialog', '$timout', '$state'];
+  <%= moduleNameCap %>ViewController.$inject = ['$scope', '<%= moduleName %>Resolve', '$mdDialog', '$timeout', '$state'];
 
-  function <%= moduleNameCap %>ViewController($scope, <%= moduleName %>Resolve, $mdDialog, $timout, $state){
+  function <%= moduleNameCap %>ViewController($scope, <%= moduleName %>Resolve, $mdDialog, $timeout, $state){
     var vm = this;
     $scope.<%= moduleName %> = <%= moduleName %>Resolve;
 
@@ -20,7 +20,7 @@
       $mdDialog.show(confirmDialog).then(function(doDelete){
         if(doDelete){
           $scope.<%= moduleName %>.$delete();
-          $timout(function(){
+          $timeout(function(){
             $state.go('app.<%= moduleName %>.list');
           }, 500);
         }

@@ -4,12 +4,12 @@
   angular.module('app.<%= moduleName %>')
   .controller('<%= moduleNameCap %>UpdateController', <%= moduleNameCap %>UpdateController);
 
-  <%= moduleNameCap %>UpdateController.$inject = ['$scope','<%= moduleName %>Resolve', '$mdDialog', '$timout', '$state'];
+  <%= moduleNameCap %>UpdateController.$inject = ['$scope','<%= moduleName %>Resolve', '$mdDialog', '$timeout', '$state'];
 
-  function <%= moduleNameCap %>UpdateController($scope, <%= moduleName %>Resolve, $mdDialog, $timout, $state){
+  function <%= moduleNameCap %>UpdateController($scope, <%= moduleName %>Resolve, $mdDialog, $timeout, $state){
     var vm = this;
     $scope.<%= moduleName %> = <%= moduleName %>Resolve;
-    vm.action = ($scope.<%= moduleName %>.id)? 'Create' : 'Update';
+    vm.action = ($scope.<%= moduleName %>.id)? 'Update' : 'Create';
 
     vm.update = function(event, <%= moduleName %>){
       if(vm.action == 'Create'){
@@ -29,7 +29,7 @@
       $mdDialog.show(confirmDialog).then(function(doDelete){
         if(doDelete){
           $scope.<%= moduleName %>.$delete();
-          $timout(function(){
+          $timeout(function(){
             $state.go('app.<%= moduleName %>.list');
           }, 500);
         }
