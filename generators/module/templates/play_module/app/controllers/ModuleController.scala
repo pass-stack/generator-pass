@@ -38,8 +38,12 @@ class <%= moduleNameCap %>Controller extends Controller {
 
   def create() = Action.async(parse.json) {implicit request =>
     request.body.validate[<%= moduleNameCap %>] match {
-      case <%= moduleName %>: JsSuccess[<%= moduleNameCap %>] => {
-        Ok(Json.toJson(Map("message" -> "saved")))
+      case js<%= moduleNameCap %>: JsSuccess[<%= moduleNameCap %>] => {
+        val <%= moduleName %> = js<%= moduleNameCap %>.get
+        <%= moduleNameCap %>Service.create(<%= moduleName %>).map {_ match {
+          case Success(r) => Ok(Json.toJson(<%= moduleName %>))
+          case Failure(e) => NotFound(Json.toJson(Map("error" -> "<%= moduleNameCap %> was not created")))
+        }}
       }
       case e: JsError => {
         Future(NotAcceptable(Json.toJson(Map("error" -> "failed  to validate <%= moduleNameCap %>"))))
@@ -49,8 +53,12 @@ class <%= moduleNameCap %>Controller extends Controller {
 
   def update(id: Long) = Action.async(parse.json) {implicit request =>
     request.body.validate[<%= moduleNameCap %>] match {
-      case <%= moduleName %>: JsSuccess[<%= moduleNameCap %>] => {
-        Ok(Json.toJson(Map("message" -> "updated")))
+      case js<%= moduleNameCap %>: JsSuccess[<%= moduleNameCap %>] => {
+        val <%= moduleName %> = js<%= moduleNameCap %>.get.copy(id = id)
+        <%= moduleNameCap %>Service.update(<%= moduleName %>).map {_ match {
+          case Success(r) => Ok(Json.toJson(<%= moduleName %>))
+          case Failure(e) => NotFound(Json.toJson(Map("error" -> "<%= moduleNameCap %> was not updated")))
+        }}
       }
       case e: JsError => {
         Future(NotAcceptable(Json.toJson(Map("error" -> "failed  to validate <%= moduleNameCap %>"))))

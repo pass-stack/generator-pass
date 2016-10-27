@@ -20,11 +20,11 @@ object <%= moduleNameCap %>Service {
     dbConfig.db.run(<%= moduleName %>s.filter(_.id === id).result.headOption)
   }
   def create(<%= moduleName %>: <%= moduleNameCap %>) = {
-    dbConfig.db.run(<%= moduleName %>s += <%= moduleName %>)
+    dbConfig.db.run((<%= moduleName %>s += <%= moduleName %>).asTry)
   }
 
   def update(<%= moduleName %>: <%= moduleNameCap %>) = {
-    dbConfig.db.run(<%= moduleName %>s.filter(_.id === <%= moduleName %>.id).update(<%= moduleName %>))
+    dbConfig.db.run(<%= moduleName %>s.filter(_.id === <%= moduleName %>.id).update(<%= moduleName %>).asTry)
   }
 
   def delete(id: Long) = {
