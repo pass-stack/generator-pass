@@ -6,7 +6,7 @@
     , 'ngAnimate'
     , 'ngMaterial'
     , 'ngResource'
-    , 'data-table'
+    , 'md.data.table'
     //PASS#Modules#Start
     //PASS#Modules#End
     ])
