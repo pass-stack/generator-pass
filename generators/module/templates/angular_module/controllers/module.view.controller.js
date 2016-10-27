@@ -4,11 +4,16 @@
   angular.module('app.<%= moduleName %>')
   .controller('<%= moduleNameCap %>ViewController', <%= moduleNameCap %>ViewController);
 
-  <%= moduleNameCap %>ViewController.$inject = ['$scope', '<%= moduleName %>Resolve', '$mdDialog', '$timeout', '$state'];
+  <%= moduleNameCap %>ViewController.$inject = ['$scope', '<%= moduleName %>Resolve', '$mdDialog', '$timeout', '$state', '$mdToast'];
 
-  function <%= moduleNameCap %>ViewController($scope, <%= moduleName %>Resolve, $mdDialog, $timeout, $state){
+  function <%= moduleNameCap %>ViewController($scope, <%= moduleName %>Resolve, $mdDialog, $timeout, $state, $mdToast){
     var vm = this;
     $scope.<%= moduleName %> = <%= moduleName %>Resolve;
+
+    vm.toast = $mdToast.simple()
+    .position({ top: true, bottom: false, right: true, left: true })
+    .hideDelay(3000)
+    .action('Close');
 
     vm.delete = function(event, <%= moduleName %>){
       var confirmDialog = $mdDialog.confirm()
@@ -19,10 +24,17 @@
       .targetEvent(event);
       $mdDialog.show(confirmDialog).then(function(doDelete){
         if(doDelete){
-          $scope.<%= moduleName %>.$delete();
-          $timeout(function(){
-            $state.go('app.<%= moduleName %>.list');
-          }, 500);
+          $scope.<%= moduleName %>.$delete().$promise.then(function(){
+            $mdToast.show(vm.toast.textContent('<%= moduleName %> deleted'))
+            .then(function(){
+              $state.go('app.<%= moduleName %>.list');
+            });
+          },function(){
+            $mdToast.show(vm.toast.textContent('<%= moduleName %> was not deleted').highlightClass('md-warn'))
+            .then(function(){
+              $state.go('app.<%= moduleName %>.list');
+            });
+          });
         }
       });
     };

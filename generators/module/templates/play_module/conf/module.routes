@@ -3,5 +3,6 @@ GET    /index                  controllers.<%= moduleNameCap %>Controller.index
 GET    /                       controllers.<%= moduleNameCap %>Controller.getAll()
 GET    /:id                    controllers.<%= moduleNameCap %>Controller.get(id: Long)
 POST   /                       controllers.<%= moduleNameCap %>Controller.create()
+POST   /:id                    controllers.<%= moduleNameCap %>Controller.update(id: Long)
 PUT    /:id                    controllers.<%= moduleNameCap %>Controller.update(id: Long)
 DELETE /:id                    controllers.<%= moduleNameCap %>Controller.delete(id: Long)
