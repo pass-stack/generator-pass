@@ -43,6 +43,12 @@
       },
       controllerAs: 'vm'
     });
+  })
+  .run(function(Sidenav){
+    Sidenav.addItem({
+      name:'<%= moduleNameCap %>',
+      state:'app.<%= moduleName %>.list'
+    });
   });
 
   new<%= moduleNameCap %>.$inject = ['<%= moduleNameCap %>Service'];

@@ -9,7 +9,7 @@
     this.items = items;
     return {
       addItem: function(item){
-        items.add(item);
+        items.push(item);
         $rootScope.$broadcast('Sidenav:addItem', items);
       },
       getItems: function(){
