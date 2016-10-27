@@ -59,6 +59,8 @@ module.exports = yeoman.Base.extend({
     var that = this;
     var moduleName = _.toLower(this.props.moduleName);
     var moduleNameCap = _.capitalize(moduleName);
+    var databaseType = this.config.get("databaseType");
+    var slickDBDriver = util.getSlickDBDriver(databaseType);
     var fields = _.map(this.props.fields, function(field){
       field.scalaType = util.getScalaType(field);
       field.scalaFormType = util.getScalaFormType(field);
@@ -96,7 +98,7 @@ module.exports = yeoman.Base.extend({
       that.fs.copyTpl(
         that.templatePath('play_module/' + template),
         that.destinationPath('modules/' + moduleName + '/' + template.replace('module', moduleName).replace('Module', moduleNameCap)),
-        { moduleName: moduleName, moduleNameCap: moduleNameCap, fields: fields }
+        { moduleName: moduleName, moduleNameCap: moduleNameCap, fields: fields, slickDBDriver: slickDBDriver }
       );
     });
 

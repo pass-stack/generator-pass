@@ -13,7 +13,7 @@ module.exports = function(){
 
   function getScalaFormType(field){
     var fieldType = field.type;
-    if(fieldType == 'Integer'){
+    if(fieldType == 'Integer' || fieldType == 'Long'){
       fieldType = 'number';
     }else if(fieldType == 'Double'){
       fieldType = 'bigDecimal';
@@ -25,7 +25,20 @@ module.exports = function(){
     return fieldType;
   }
 
+  function getSlickDBDriver(databaseType){
+    switch(databaseType){
+      case 'Mysql': return 'MySQLDriver'; break;
+      case 'PostgresSQL': return 'PostgresDriver'; break;
+      case 'Derby': return 'DerbyDriver'; break;
+      case 'H2': return 'H2Driver'; break;
+      case 'SQLite': return 'SQLiteDriver'; break;
+      case 'HyperSQL': return 'HsqldbDriver'; break;
+      default: return '';
+    }
+  }
+
   return {
+    getSlickDBDriver:getSlickDBDriver,
     getScalaType: getScalaType,
     getScalaFormType: getScalaFormType
   };
