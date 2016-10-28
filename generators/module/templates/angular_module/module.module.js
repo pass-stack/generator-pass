@@ -58,7 +58,10 @@
   new<%= moduleNameCap %>.$inject = ['<%= moduleNameCap %>Service'];
 
   function new<%= moduleNameCap %>(<%= moduleNameCap %>Service) {
-    return new <%= moduleNameCap %>Service();
+    return angular.extend(new <%= moduleNameCap %>Service(), {
+      <% fields.forEach(function(field){ %><%= field.name %>: <%- field.defaultValue %>,
+      <% }); %>
+    });
   }
 
   get<%= moduleNameCap %>.$inject = ['$stateParams', '<%= moduleNameCap %>Service'];

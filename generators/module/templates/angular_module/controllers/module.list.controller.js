@@ -47,8 +47,8 @@
     };
 
 
-    $scope.get<%= moduleNameCap %>s = function () {
-      $scope.selected = [];
+    $scope.get<%= moduleNameCap %>s = function(){
+      $scope.<%= moduleName %>s = $scope.selected = [];
       $scope.promise = <%= moduleNameCap %>Service.query().$promise;
       $scope.promise.then(function(<%= moduleName %>s){
         $scope.<%= moduleName %>s = <%= moduleName %>s;

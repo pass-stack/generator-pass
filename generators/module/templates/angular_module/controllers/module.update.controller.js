@@ -25,11 +25,12 @@
 
     vm.update = function(event, <%= moduleName %>){
       if(vm.action == 'Create'){
+        delete <%= moduleName %>.id;
         <%= moduleName %>.$save(function(){
           $mdToast.show(makeToast('<%= moduleName %> was created', 'md-toast-blue', 'See'))
           .then(function(answer){
             if(answer == 'ok'){
-              $state.go('^.view', { id: <%= moduleName %>.id });
+              $state.go('^.list');
             }
           });
         },function(){
@@ -59,10 +60,8 @@
       $mdDialog.show(confirmDialog).then(function(doDelete){
         if(doDelete){
           $scope.<%= moduleName %>.$delete(function(){
-            $mdToast.show(makeToast('<%= moduleName %> deleted', 'md-toast-blue'))
-            .then(function(){
-              $state.go('app.<%= moduleName %>.list');
-            });
+            $mdToast.show(makeToast('<%= moduleName %> deleted', 'md-toast-blue'));
+            $state.go('app.<%= moduleName %>.list');
           },function(){
             $mdToast.show(makeToast('<%= moduleName %> was not deleted', 'md-toast-red'));
           });

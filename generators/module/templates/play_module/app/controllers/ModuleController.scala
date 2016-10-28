@@ -37,7 +37,8 @@ class <%= moduleNameCap %>Controller extends Controller {
   }
 
   def create() = Action.async(parse.json) {implicit request =>
-    request.body.validate[<%= moduleNameCap %>] match {
+    val content = request.body.as[JsObject] + ("id" -> Json.toJson(0))
+    content.validate[<%= moduleNameCap %>] match {
       case js<%= moduleNameCap %>: JsSuccess[<%= moduleNameCap %>] => {
         val <%= moduleName %> = js<%= moduleNameCap %>.get
         <%= moduleNameCap %>Service.create(<%= moduleName %>).map {_ match {
@@ -50,8 +51,6 @@ class <%= moduleNameCap %>Controller extends Controller {
       }
     }
   }
-
-  def createWithId(id: Long) = create
 
   def update(id: Long) = Action.async(parse.json) {implicit request =>
     request.body.validate[<%= moduleNameCap %>] match {

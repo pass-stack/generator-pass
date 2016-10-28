@@ -20,9 +20,9 @@ object <%= moduleNameCap %>Form {
 }
 
 class <%= moduleNameCap %>TableDef(tag: Tag) extends Table[<%= moduleNameCap %>](tag, "<%= moduleName %>") {
-  <%- fields.map(function(field){
-        return 'def ' + field.name + ' = ' + 'column[' + field.scalaType + ']("' + field.name + '")';
-    }).join('\n  '); %>
+  <% fields.forEach(function(field){ %>
+    def <%= field.name %> = column[<%= field.scalaType %>]("<%= field.name %>"<% if(field.primary){ %>, O.PrimaryKey<% }; %>)
+  <% });%>
 
   override def * = (<%- fields.map(function(field){ return field.name}).join(', '); %>) <> (<%= moduleNameCap %>.tupled, <%= moduleNameCap %>.unapply)
 }

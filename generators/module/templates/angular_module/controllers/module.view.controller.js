@@ -24,16 +24,12 @@
       .targetEvent(event);
       $mdDialog.show(confirmDialog).then(function(doDelete){
         if(doDelete){
-          $scope.<%= moduleName %>.$delete().$promise.then(function(){
-            $mdToast.show(vm.toast.textContent('<%= moduleName %> deleted'))
-            .then(function(){
-              $state.go('app.<%= moduleName %>.list');
-            });
+          $scope.<%= moduleName %>.$delete().then(function(){
+            $mdToast.show(vm.toast.textContent('<%= moduleName %> deleted'));
+            $state.go('app.<%= moduleName %>.list');
           },function(){
-            $mdToast.show(vm.toast.textContent('<%= moduleName %> was not deleted').highlightClass('md-warn'))
-            .then(function(){
-              $state.go('app.<%= moduleName %>.list');
-            });
+            $mdToast.show(vm.toast.textContent('<%= moduleName %> was not deleted').highlightClass('md-warn'));
+            $state.go('app.<%= moduleName %>.list');
           });
         }
       });

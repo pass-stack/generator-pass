@@ -1,10 +1,10 @@
 <md-card>
-  <md-toolbar class="md-table-toolbar" ng-class="{ 'md-accent': areSelected, 'md-default':!areSelected }">
+  <md-toolbar class="md-table-toolbar" ng-class="{ 'md-accent': areSelected, 'md-default': !areSelected }">
     <div class="md-toolbar-tools" ng-if="!areSelected">
       <span><%= moduleNameCap %>s</span>
       <span flex></span>
       <md-button class="md-icon-button" aria-label="Create" ui-sref="^.create">
-        <md-icon md-font-set="material-icons" aria-label="Create" alt="Create" style="color: #30A9DE"> create </md-icon>
+        <md-icon md-font-set="material-icons" aria-label="Create" alt="Create" style="color: #E53A40"> add </md-icon>
       </md-button>
     </div>
     <div class="md-toolbar-tools" ng-if="areSelected">

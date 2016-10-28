@@ -6,11 +6,12 @@
   </md-toolbar>
   <div class="md-padding">
     <form name="userForm" layout="column">
-      <% fields.forEach(function(field){ %>
+      <% fields.filter(function(field){return !field.primary;}).forEach(function(field){ %>
       <md-input-container>
         <label for="<%= field.name %>"><%= field.name %></label>
         <input id="<%= field.name %>" name="<%= field.name %>" type="<%= field.htmlType %>" ng-model="<%= moduleName %>.<%= field.name %>">
-      </md-input-container><% }); %>
+      </md-input-container>
+      <% }); %>
     </form>
   </div>
   <md-card-actions layout="row" layout-align="end center">

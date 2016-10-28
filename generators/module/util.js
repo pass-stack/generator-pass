@@ -50,10 +50,21 @@ module.exports = function(){
     }
   }
 
+  function getDefaultValue(field){
+    switch(field.type){
+      case 'Integer':
+      case 'Long':
+      case 'Double': return 0; break;
+      case 'Boolean': return false; break;
+      default: return '\'\'';
+    }
+  }
+
   return {
     getSlickDBDriver:getSlickDBDriver,
     getScalaType: getScalaType,
     getHtmlType: getHtmlType,
-    getScalaFormType: getScalaFormType
+    getScalaFormType: getScalaFormType,
+    getDefaultValue: getDefaultValue
   };
 }();

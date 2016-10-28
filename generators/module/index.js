@@ -12,7 +12,7 @@ module.exports = yeoman.Base.extend({
   constructor: function(){
     yeoman.Base.apply(this, arguments);
     this.props = {
-      fields: [{ name:'id', type:'Long' }]
+      fields: [{ name:'id', type:'Long', primary:true }]
     };
     this.argument('moduleName', { type: String, required: false, desc: 'Module Name', defaults: null});
     this.props.moduleName = this.moduleName;
@@ -67,6 +67,7 @@ module.exports = yeoman.Base.extend({
       field.scalaType = util.getScalaType(field);
       field.scalaFormType = util.getScalaFormType(field);
       field.htmlType = util.getHtmlType(field);
+      field.defaultValue = util.getDefaultValue(field);
       return field;
     });
     var templates_ng = [
