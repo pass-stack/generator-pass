@@ -14,8 +14,12 @@
     </form>
   </div>
   <md-card-actions layout="row" layout-align="end center">
-    <md-button flex="15" class="md-primary md-raised" ng-click="vm.update($event, <%= moduleName %>)">{{ vm.action }}</md-button>
+    <div flex="15" layout="column">
+      <md-button class="md-primary md-raised" ng-click="vm.update($event, <%= moduleName %>)">{{ vm.action }}</md-button>
+    </div>
     <div flex="5"></div>
-    <md-button flex="15" class="md-warn md-raised" ng-click="vm.delete($event, <%= moduleName %>)">Delete</md-button>
+    <div flex="15" layout="column">
+      <md-button class="md-warn md-raised" ng-click="vm.delete($event, <%= moduleName %>)">Delete</md-button>
+    </div>
   </md-card-actions>
 </md-card>
