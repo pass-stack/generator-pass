@@ -23,7 +23,7 @@ Available generators:
 
 ## Application Generator
 
-The application generator will help you create a fresh copy of a MEAN.JS application in your working folder. To create your MEAN application, navigate to a new project folder, and then use *yo* to generate your application:
+The application generator will help you create a fresh copy of a PASS application in your working folder. To create your PASS application, navigate to a new project folder, and then use *yo* to generate your application:
 
 ```
 $ yo pass
