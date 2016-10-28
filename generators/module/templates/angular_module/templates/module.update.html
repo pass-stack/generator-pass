@@ -9,7 +9,7 @@
       <% fields.forEach(function(field){ %>
       <md-input-container>
         <label for="<%= field.name %>"><%= field.name %></label>
-        <input id="<%= field.name %>" name="<%= field.name %>" ng-model="<%= moduleName %>.<%= field.name %>">
+        <input id="<%= field.name %>" name="<%= field.name %>" type="<%= field.htmlType %>" ng-model="<%= moduleName %>.<%= field.name %>">
       </md-input-container><% }); %>
     </form>
   </div>

@@ -11,6 +11,17 @@ module.exports = function(){
     return fieldType;
   }
 
+  function getHtmlType(field){
+    switch(field.type){
+      case 'Integer':
+      case 'Long':
+      case 'Double': return 'number'; break;
+      case 'Boolean': return 'checkbox'; break;
+      case 'String': return 'text'; break;
+      default: return '';
+    }
+  }
+
   function getScalaFormType(field){
     var fieldType = field.type;
     if(fieldType == 'Integer'){
@@ -42,6 +53,7 @@ module.exports = function(){
   return {
     getSlickDBDriver:getSlickDBDriver,
     getScalaType: getScalaType,
+    getHtmlType: getHtmlType,
     getScalaFormType: getScalaFormType
   };
 }();

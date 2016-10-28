@@ -66,6 +66,7 @@ module.exports = yeoman.Base.extend({
     var fields = _.map(this.props.fields, function(field){
       field.scalaType = util.getScalaType(field);
       field.scalaFormType = util.getScalaFormType(field);
+      field.htmlType = util.getHtmlType(field);
       return field;
     });
     var templates_ng = [
