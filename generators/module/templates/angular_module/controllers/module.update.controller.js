@@ -11,25 +11,38 @@
     $scope.<%= moduleName %> = <%= moduleName %>Resolve;
     vm.action = ($scope.<%= moduleName %>.id)? 'Update' : 'Create';
 
-    function makeToast(content, mdClass){
+    function makeToast(content, mdClass, action){
+      if(!action){
+        action = 'Close';
+      }
       return $mdToast.simple()
       .textContent(content)
       .toastClass(mdClass)
       .position('bottom right')
       .hideDelay(3000)
-      .action('Close');
+      .action(action);
     }
 
     vm.update = function(event, <%= moduleName %>){
       if(vm.action == 'Create'){
         <%= moduleName %>.$save(function(){
-          $mdToast.show(makeToast('<%= moduleName %> was created', 'md-toast-blue'));
+          $mdToast.show(makeToast('<%= moduleName %> was created', 'md-toast-blue', 'See'))
+          .then(function(answer){
+            if(answer == 'ok'){
+              $state.go('^.view', { id: <%= moduleName %>.id });
+            }
+          });
         },function(){
           $mdToast.show(makeToast('<%= moduleName %> was not created', 'md-toast-red'));
         });
       }else{
         <%= moduleName %>.$update(function(){
-          $mdToast.show(makeToast('<%= moduleName %> was created', 'md-toast-blue'));
+          $mdToast.show(makeToast('<%= moduleName %> was updated', 'md-toast-blue', 'See'))
+          .then(function(answer){
+            if(answer == 'ok'){
+              $state.go('^.view', { id: <%= moduleName %>.id });
+            }
+          });
         },function(){
           $mdToast.show(makeToast('<%= moduleName %> was not updated', 'md-toast-red'));
         });
