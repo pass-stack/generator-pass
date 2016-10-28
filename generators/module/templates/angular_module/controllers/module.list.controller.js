@@ -10,6 +10,11 @@
     var vm = this;
     $scope.selected = [];
 
+    $scope.query = {
+      limit: 5,
+      page: 1
+    };
+
     function makeToast(content, mdClass){
       return $mdToast.simple()
       .textContent(content)
@@ -30,21 +35,17 @@
     });
 
     $scope.deleteSelected = function(){
-      var promises = _.map($scope.<%= moduleName %>s, function(<%= moduleName %>){
+      var promises = _.map($scope.selected, function(<%= moduleName %>){
         return <%= moduleName %>.$delete().$promise;
       });
       Promise.all(promises).then(function(){
-        $scope.<%= moduleName %>s = $scope.selected = [];
+        $scope.get<%= moduleNameCap %>s();
         $mdToast.show(makeToast('<%= moduleName %>s were deleted', 'md-toast-blue'));
       },function(){
         $mdToast.show(makeToast('<%= moduleName %>s were not deleted', 'md-toast-red'));
       });
     };
 
-    $scope.query = {
-      limit: 5,
-      page: 1
-    };
 
     $scope.get<%= moduleNameCap %>s = function () {
       $scope.selected = [];
