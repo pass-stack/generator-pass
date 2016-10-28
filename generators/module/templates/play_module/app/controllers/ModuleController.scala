@@ -51,6 +51,8 @@ class <%= moduleNameCap %>Controller extends Controller {
     }
   }
 
+  def createWithId(id: Long) = create
+
   def update(id: Long) = Action.async(parse.json) {implicit request =>
     request.body.validate[<%= moduleNameCap %>] match {
       case js<%= moduleNameCap %>: JsSuccess[<%= moduleNameCap %>] => {
