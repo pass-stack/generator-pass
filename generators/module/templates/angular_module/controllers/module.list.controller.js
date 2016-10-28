@@ -19,19 +19,22 @@
       .action('Close');
     }
 
-    $scope.$watch('selected', function(newVal){
-      if(newVal.length > 0){
+    $scope.$watch(function(){
+      return $scope.selected.length;
+    }, function(newVal){
+      if(newVal > 0){
         $scope.areSelected = true;
       }else{
         $scope.areSelected = false;
       }
     });
 
-    vm.deleteSelected = function(){
+    $scope.deleteSelected = function(){
       var promises = _.map($scope.<%= moduleName %>s, function(<%= moduleName %>){
         return <%= moduleName %>.$delete().$promise;
       });
       Promise.all(promises).then(function(){
+        $scope.<%= moduleName %>s = $scope.selected = [];
         $mdToast.show(makeToast('<%= moduleName %>s were deleted', 'md-toast-blue'));
       },function(){
         $mdToast.show(makeToast('<%= moduleName %>s were not deleted', 'md-toast-red'));
@@ -44,6 +47,7 @@
     };
 
     $scope.get<%= moduleNameCap %>s = function () {
+      $scope.selected = [];
       $scope.promise = <%= moduleNameCap %>Service.query().$promise;
       $scope.promise.then(function(<%= moduleName %>s){
         $scope.<%= moduleName %>s = <%= moduleName %>s;
