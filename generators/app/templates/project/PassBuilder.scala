@@ -11,7 +11,6 @@ object PassBuilder {
     object PassBuilderProcess extends PlayRunHook {
 
       override def beforeStarted(): Unit = {
-        Process("sbt reload", base).run
         Process("grunt", base).run
       }
 
