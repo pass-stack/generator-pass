@@ -1,7 +1,17 @@
 <md-card>
   <md-toolbar class="md-table-toolbar md-default">
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools" ng-hide="areSelected">
       <span><%= moduleNameCap %>s</span>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Create" ui-sref="^.create">
+        <md-icon md-font-set="material-icons" aria-label="Create" alt="Create" style="color: #30A9DE"> create </md-icon>
+      </md-button>
+    </div>
+    <div class="md-toolbar-tools" ng-show="areSelected">
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Delete" ng-click="vm.deleteSelected()">
+        <md-icon md-font-set="material-icons" aria-label="Delete" alt="Delete" style="color: #E53A40"> delete </md-icon>
+      </md-button>
     </div>
   </md-toolbar>
 
@@ -9,12 +19,20 @@
     <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
       <thead md-head md-order="query.order" md-on-reorder="get<%= moduleNameCap %>s">
         <tr md-row>
-          <% fields.forEach(function(field){ %><th md-column><span><%= field.name %></span></th><% }); %>
+          <% fields.forEach(function(field){ %><th md-column><span><%= field.name %></span></th>
+          <% }); %>
+          <th md-column></th>
         </tr>
       </thead>
       <tbody md-body>
         <tr md-row md-select="<%= moduleName %>" md-select-id="name" md-auto-select ng-repeat="<%= moduleName %> in <%= moduleName %>s">
-          <% fields.forEach(function(field){ %><td md-cell>{{<%= moduleName %>.<%= field.name %>}}</td><% }); %>
+          <% fields.forEach(function(field){ %><td md-cell>{{<%= moduleName %>.<%= field.name %>}}</td>
+          <% }); %>
+          <td md-cell layout="column" layout-align="center end">
+            <md-button class="md-icon-button" aria-label="Update" ui-sref="^.update({ id:<%= moduleName %>.id })">
+              <md-icon md-font-set="material-icons" aria-label="Update" alt="Update" style="color: #30A9DE"> create </md-icon>
+            </md-button>
+          </td>
         </tr>
       </tbody>
     </table>
