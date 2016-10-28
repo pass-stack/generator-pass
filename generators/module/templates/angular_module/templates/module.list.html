@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody md-body>
-        <tr md-row md-select="<%= moduleName %>" md-select-id="name" md-auto-select ng-repeat="<%= moduleName %> in <%= moduleName %>s">
+        <tr md-row md-select="<%= moduleName %>" md-select-id="id" md-auto-select ng-repeat="<%= moduleName %> in <%= moduleName %>s">
           <% fields.forEach(function(field){ %><td md-cell>{{<%= moduleName %>.<%= field.name %>}}</td>
           <% }); %>
           <td md-cell layout="column" layout-align="center end">

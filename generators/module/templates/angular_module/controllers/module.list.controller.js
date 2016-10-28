@@ -29,7 +29,7 @@
 
     vm.deleteSelected = function(){
       var promises = _.map($scope.<%= moduleName %>s, function(<%= moduleName %>){
-        return <%= moduleName %>.$delete.$promise;
+        return <%= moduleName %>.$delete().$promise;
       });
       Promise.all(promises).then(function(){
         $mdToast.show(makeToast('<%= moduleName %>s were deleted', 'md-toast-blue'));
