@@ -108,8 +108,10 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
+    this.spawnCommand('grunt', ['default']);
   },
 
   end: function(){
+    this.log(chalk.yellow("it was good seeing you, have a nice day!"));
   }
 });
