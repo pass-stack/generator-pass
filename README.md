@@ -6,10 +6,10 @@ pass is a [Yeoman generator](http://yeoman.io/), used to create a [Scala](http:/
 
 Before you begin make sure you have the [yo scaffolding tool](http://yeoman.io/learning/index.html) and [Grunt](http://gruntjs.com/) installed
 
-To globally install *yo* and *Grunt* you will need to use npm:
+To globally install *yo*, *Grunt* and generator-pass you will need to use npm:
 
 ```
-$ npm install -g yo grunt
+$ npm install -g yo grunt generator-pass
 ```
 
 While we're at it, download [sbt](http://www.scala-sbt.org/) or [activator](https://www.lightbend.com/activator/download) as we'll need it to run the application.
