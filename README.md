@@ -54,6 +54,7 @@ $ sbt reload
 * refactor the code for the generator and comment it out
 * Add support for Slick Evolutions, that way one doesn't have to create the tables manually
 * Expose the API of the basic crud operations using Swagger in GET /api endpoint
+* add support for authentication and authorization
 
 
 ## License
