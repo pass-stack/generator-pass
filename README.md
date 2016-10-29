@@ -49,6 +49,13 @@ you can reload the project using sbt, if you are already on the sbt command line
 $ sbt reload
 ```
 
+## TODO
+
+* refactor the code for the generator and comment it out
+* Add support for Slick Evolutions, that way one doesn't have to create the tables manually
+* Expose the API of the basic crud operations using Swagger in GET /api endpoint
+
+
 ## License
 
 (The MIT License)
